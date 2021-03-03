@@ -76,9 +76,6 @@ const Login = props => {
               <div className="mb-sm-4">
                 <Link to="/recuperar-clave"><small>¿Olvidaste tu contraseña?</small></Link>
               </div>
-              <div className="mb-4">
-                <small>¿Aún no tienes cuenta? <Link to="/registrarme">Registrate</Link></small>
-              </div>
             </div>
 
             <div className="d-flex justify-content-end">

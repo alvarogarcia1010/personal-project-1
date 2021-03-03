@@ -7,15 +7,18 @@ const Header = props => {
   return (
     <header>
       <Navbar bg="primary" variant="dark" expand="lg">
-        <Navbar.Brand className="ml-4">Alvaro's data client</Navbar.Brand>
+        <Navbar.Brand className="ml-4">Parroquia San Esteban - Tepecoyo</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
+            <LinkContainer exact to="/bautismos">
+              <Nav.Link>Bautismo</Nav.Link>
+            </LinkContainer>
             <LinkContainer exact to="/productos">
-              <Nav.Link>Productos</Nav.Link>
+              <Nav.Link>Confirmación</Nav.Link>
             </LinkContainer>
             <LinkContainer exact to="/usuarios">
-              <Nav.Link>Usuarios</Nav.Link>
+              <Nav.Link>Matrimonios</Nav.Link>
             </LinkContainer>
             
           </Nav>
