@@ -1,9 +1,12 @@
 import React from 'react'
 import {Navbar, Nav} from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import {LinkContainer} from "react-router-bootstrap"
 import SearchInput from './SearchInput';
 
 const Header = props => {
+  const userName = useSelector(state => state.auth.name)
+  
   return (
     <header>
       <Navbar bg="primary" variant="dark" expand="lg">
@@ -24,7 +27,7 @@ const Header = props => {
           </Nav>
           <Nav className="ml-auto mr-4">
             {props.onSearch? <SearchInput onSearch={props.onSearch} placeholder={props.placeholder}/> : null}
-            <Navbar.Text className="text-white font-weight-bold">{props.name}</Navbar.Text>
+            <Navbar.Text className="text-white font-weight-bold">{userName}</Navbar.Text>
             <LinkContainer exact to="/logout">
               <Nav.Link>Salir</Nav.Link>
             </LinkContainer>
