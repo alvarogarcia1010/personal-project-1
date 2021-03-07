@@ -61,7 +61,7 @@ const CustomTable = forwardRef((props, ref) => {
           toolbar: toolbar,
           padding: padding,
           exportButton: exportDefault,
-          actionsColumnIndex: -1,
+          actionsColumnIndex: 0,
           headerStyle: 
           {
             fontWeight: "bold",

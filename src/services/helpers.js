@@ -1,6 +1,12 @@
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
+export const defaultCellStyles = {
+  padding: "5px 8px",
+  fontSize: "14px",
+  whiteSpace: 'nowrap'
+}
+
 export const updateObject = (oldObject, updatedProperties) => {
   return {
     ...oldObject,

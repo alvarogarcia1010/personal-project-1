@@ -130,4 +130,5 @@ export const deleteOne = async (id, token) => {
   }
 }
 
-export default {getBaptisms, create, update, deleteOne};
+const BaptimsService = {getBaptisms, create, update, deleteOne}
+export default BaptimsService;
