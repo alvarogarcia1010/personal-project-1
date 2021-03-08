@@ -130,4 +130,5 @@ export const deleteOne = async (id, token) => {
   }
 }
 
-export default {getArticles, create, update, deleteOne};
+const ArticleService = {getArticles, create, update, deleteOne}
+export default ArticleService;

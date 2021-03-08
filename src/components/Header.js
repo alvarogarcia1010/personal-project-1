@@ -17,10 +17,10 @@ const Header = props => {
             <LinkContainer exact to="/bautismos">
               <Nav.Link>Bautismo</Nav.Link>
             </LinkContainer>
-            <LinkContainer exact to="/productos">
+            <LinkContainer exact to="/confirmaciones">
               <Nav.Link>Confirmación</Nav.Link>
             </LinkContainer>
-            <LinkContainer exact to="/usuarios">
+            <LinkContainer exact to="/matrimonios">
               <Nav.Link>Matrimonios</Nav.Link>
             </LinkContainer>
             

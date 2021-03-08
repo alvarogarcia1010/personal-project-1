@@ -1,13 +1,13 @@
 import React from 'react'
 import {Route, Switch, Redirect} from 'react-router-dom'
 import PrivateRoute from './PrivateRoute'
-import Articles from './views/Articles/Articles'
 import Baptims from './views/Baptims/Baptims'
+import Confirmations from './views/Confirmations/Confirmations'
 import Login from './views/Login/Login'
 import Logout from './views/Logout/Logout'
+import Marriages from './views/Marriages/Marriages'
 import ChangePassword from './views/ResetPassword/ChangePassword'
 import ResetPassword from './views/ResetPassword/ResetPassword'
-import Users from './views/Users/Users'
 
 const Routes = props => {
   return (
@@ -17,10 +17,10 @@ const Routes = props => {
       <Route exact path="/recuperar-clave" component={ResetPassword}/>
       <Route exact path="/cambiar-clave/:token" component={ChangePassword}/>
       <PrivateRoute path='/bautismos' component={Baptims}/>
-      <PrivateRoute path='/productos' component={Articles}/>
-      <PrivateRoute path='/usuarios' component={Users}/>
+      <PrivateRoute path='/confirmaciones' component={Confirmations}/>
+      <PrivateRoute path='/matrimonios' component={Marriages}/>
       <PrivateRoute path='/logout' component={Logout}/>
-      <Redirect to="/productos"/>
+      <Redirect to="/bautismos"/>
     </Switch>
   )
 }

@@ -153,4 +153,5 @@ export const logout = async (token) => {
 
 }
 
-export default {login, register, resetPassword, changePassword, logout}
+const AuthService = {login, register, resetPassword, changePassword, logout}
+export default AuthService

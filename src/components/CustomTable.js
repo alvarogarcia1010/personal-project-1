@@ -44,6 +44,15 @@ const CustomTable = forwardRef((props, ref) => {
     });
   }
 
+  if(props.onCreatePDF)
+  {
+    actions.push({
+      icon: "picture_as_pdf",
+      tooltip: "Fé de bautismo",
+      onClick: props.onCreatePDF
+    });
+  }
+
   return (
     <div style={{maxWidth: "100%"}}>
       <MaterialTable
@@ -62,6 +71,8 @@ const CustomTable = forwardRef((props, ref) => {
           padding: padding,
           exportButton: exportDefault,
           actionsColumnIndex: 0,
+          pageSize: 8,
+          pageSizeOptions: [5, 8, 10, 20, 50],
           headerStyle: 
           {
             fontWeight: "bold",

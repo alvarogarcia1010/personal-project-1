@@ -86,7 +86,7 @@ const UserForm = (props) => {
         submitCount: false,
       });
     }
-  }, [props.user]);
+  }, [props.user, reset]);
   
   return (
     <Card>
