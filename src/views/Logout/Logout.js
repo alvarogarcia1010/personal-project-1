@@ -18,7 +18,7 @@ class Logout extends Component
   {
     return (
       <>
-       <div class="card-container">
+       <div className="card-container">
          <div>
           <Spinner animation="grow" variant="primary" className="spinner-lg"/>
          </div>

@@ -18,7 +18,7 @@ const initialSelectedBaptism = {
   father_name: "",
   mother_name: "",
   godfather_name: "",
-  god_mother_name: "",
+  godmother_name: "",
   celebrating_priest: "",
   organization_id: 1,
 }
