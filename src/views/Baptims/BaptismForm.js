@@ -11,6 +11,7 @@ const schema = yup.object().shape({
   book_number: yup.string().nullable(),
   folio_number: yup.string().nullable(),
   record_number: yup.string().nullable(),
+  date: yup.string().required("Campo obligatiorio"),
   name: yup.string().required("Campo obligatiorio"),
   birth_date: yup.string().required("Campo obligatiorio"),
   father_name: yup.string().nullable(),
