@@ -1,8 +1,8 @@
 import axiosInstance from '../AxiosInstance'
 import {isEmpty, onErrorHandler} from './helpers'
 
-export const getArticles = async (query, token) => {
-  let articlesData = {
+export const getMarriages = async (query, token) => {
+  let marriagesData = {
     rows: [],
     page: 1,
     records: 0
@@ -10,7 +10,7 @@ export const getArticles = async (query, token) => {
 
   try 
   {
-    let url = axiosInstance.defaults.baseURL + '/articles?';
+    let url = axiosInstance.defaults.baseURL + '/marriages?';
     url += 'page[size]=' + query.pageSize;
     url += '&page[number]=' + (query.page + 1);
     url += '&filter=' + query.search;
@@ -33,16 +33,16 @@ export const getArticles = async (query, token) => {
 
     let rows = [];
 
-    response.data.data.forEach(article => {
+    response.data.data.forEach(marriage => {
       rows.push({
-        id: article.id,
-        ...article.attributes
+        id: marriage.id,
+        ...marriage.attributes
       });
     });
 
-    articlesData.rows = rows;
-    articlesData.page = response.data.meta.page;
-    articlesData.records = response.data.meta.records;
+    marriagesData.rows = rows;
+    marriagesData.page = response.data.meta.page;
+    marriagesData.records = response.data.meta.records;
   }
   catch (error)
   {
@@ -50,7 +50,7 @@ export const getArticles = async (query, token) => {
   }
   finally
   {
-    return articlesData;
+    return marriagesData;
   }
 }
 
@@ -58,7 +58,7 @@ export const create = async (data, token) => {
   let response;
   try 
   {
-    let url = axiosInstance.defaults.baseURL + '/articles';
+    let url = axiosInstance.defaults.baseURL + '/marriages';
 
     response = await axiosInstance.post(url, data, {
       headers: {
@@ -83,7 +83,7 @@ export const update = async (data, token) => {
   let response;
   try 
   {
-    let url = axiosInstance.defaults.baseURL + `/articles/${data.id}`;
+    let url = axiosInstance.defaults.baseURL + `/marriages/${data.id}`;
     data.id = undefined;
 
     response = await axiosInstance.put(url, data, {
@@ -109,7 +109,7 @@ export const deleteOne = async (id, token) => {
   let response;
   try 
   {
-    let url = axiosInstance.defaults.baseURL + `/articles/${id}`;
+    let url = axiosInstance.defaults.baseURL + `/marriages/${id}`;
 
     response = await axiosInstance.delete(url, {
       headers: {
@@ -130,5 +130,5 @@ export const deleteOne = async (id, token) => {
   }
 }
 
-const ArticleService = {getArticles, create, update, deleteOne}
-export default ArticleService;
+const MarriagesService = {getMarriages, create, update, deleteOne}
+export default MarriagesService;

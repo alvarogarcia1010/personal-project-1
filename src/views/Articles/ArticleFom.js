@@ -84,7 +84,7 @@ const ArticleFom = (props) => {
         submitCount: false,
       });
     }
-  }, [props.article]);
+  }, [props.article, reset]);
   
   return (
     <Card>

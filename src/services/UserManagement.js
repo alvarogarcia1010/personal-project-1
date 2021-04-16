@@ -135,4 +135,5 @@ export const deleteOne = async (id, token) => {
   }
 }
 
-export default {getUsers, create, update, deleteOne};
+const UserService = {getUsers, create, update, deleteOne};
+export default UserService

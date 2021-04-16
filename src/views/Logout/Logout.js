@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Spinner} from 'react-bootstrap'
 import * as actions from '../../store/actions/index'
-import {Redirect} from 'react-router-dom';
 import AuthManagement from '../../services/AuthManagement'
 
 class Logout extends Component 
@@ -10,7 +9,7 @@ class Logout extends Component
   componentDidMount() 
   {
     AuthManagement.logout(this.props.token)
-      .then(response => {
+      .then(_ => {
         this.props.onLogout();
       })
   }
@@ -19,7 +18,7 @@ class Logout extends Component
   {
     return (
       <>
-       <div class="card-container">
+       <div className="card-container">
          <div>
           <Spinner animation="grow" variant="primary" className="spinner-lg"/>
          </div>

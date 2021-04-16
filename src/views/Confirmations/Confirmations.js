@@ -3,11 +3,11 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import CustomTable from '../../components/CustomTable'
 import Header from '../../components/Header'
-import BaptismManagement from '../../services/BaptismManagement'
+import ConfirmationManagement from '../../services/ConfirmationManagement'
 import { confirmDeleteFireToast, defaultCellStyles, isEmpty, updateObject, fireMessage } from '../../services/helpers'
-import BaptismForm from './BaptismForm'
+import ConfirmationForm from './ConfirmationForm'
 
-const initialSelectedBaptism = {
+const initialSelectedConfirmation = {
   id:"",
   book_number: null,
   folio_number: null,
@@ -19,7 +19,6 @@ const initialSelectedBaptism = {
   mother_name: "",
   godfather_name: "",
   godmother_name: "",
-  celebrating_priest: "",
   organization_id: 1,
 }
 
@@ -38,16 +37,15 @@ const columns = [
   { title: 'Madre', field: 'mother_name', cellStyle: defaultCellStyles},
   { title: 'Padrino', field: 'godfather_name', cellStyle: defaultCellStyles},
   { title: 'Madrina', field: 'godmother_name', cellStyle: defaultCellStyles},
-  { title: 'Sacerdote', field: 'celebrating_priest', cellStyle: defaultCellStyles},
 ]
 
-const Baptims = () => {
-  const [baptism, setBaptism] = useState(initialSelectedBaptism)
+const Confirmations = () => {
+  const [confirmation, setConfirmation] = useState(initialSelectedConfirmation)
   const token = useSelector(state => state.auth.token)
   const tableRef = useRef()
 
   const fetchData = query => new Promise(async (resolve) => {
-    const { rows, page, records } = await BaptismManagement.getBaptisms(query, token)
+    const { rows, page, records } = await ConfirmationManagement.getConfirmations(query, token)
 
     resolve({
       data: rows,
@@ -62,18 +60,18 @@ const Baptims = () => {
 
   const onEditAction = (event, rowData) => {
     event.stopPropagation();
-    let baptismData = updateObject(initialSelectedBaptism, {...rowData})
-    delete baptismData.tableData;
-    delete baptismData.date_with_format;
-    delete baptismData.birth_date_with_format;
+    let confirmationData = updateObject(initialSelectedConfirmation, {...rowData})
+    delete confirmationData.tableData;
+    delete confirmationData.date_with_format;
+    delete confirmationData.birth_date_with_format;
 
-    setBaptism(baptismData)
+    setConfirmation(confirmationData)
   }
 
   const onConfirmDeleteAction = (_, rowData) => {
     confirmDeleteFireToast(async () => {
       
-      const response = await BaptismManagement.deleteOne(rowData.id, token);
+      const response = await ConfirmationManagement.deleteOne(rowData.id, token);
 
       if(response.data)
       {
@@ -83,10 +81,10 @@ const Baptims = () => {
   }
 
   const cleanState = () => {
-    setBaptism(initialSelectedBaptism)
+    setConfirmation(initialSelectedConfirmation)
   }
 
-  const searchBaptism = (search) => {
+  const searchConfirmation = (search) => {
     tableRef.current && tableRef.current.onQueryChange({search: search})
   }
 
@@ -98,21 +96,21 @@ const Baptims = () => {
     <>
       <Header
         placeholder="Buscar..."
-        onSearch={searchBaptism}
+        onSearch={searchConfirmation}
       />
       <Container fluid>
         <Row className="my-3 mx-0">
           <Col lg={4} className="mb-4">
-            <BaptismForm
+            <ConfirmationForm
               token={token}
-              baptismData={baptism}
+              confirmationData={confirmation}
               onRefreshTableClicked={refreshTableAction}
               cleanState={cleanState}
             />
           </Col>
           <Col lg={8}>
             <CustomTable
-              title="Registro de bautismos"
+              title="Registro de confirmación"
               columns={columns}
               data={fetchData}
               ref={tableRef}
@@ -128,4 +126,4 @@ const Baptims = () => {
   )
 }
 
-export default Baptims
+export default Confirmations

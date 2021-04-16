@@ -5,7 +5,7 @@ import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup"
 import { fireToast, isEmpty } from '../../services/helpers'
-import BaptismManagement from '../../services/BaptismManagement'
+import ConfirmationManagement from '../../services/ConfirmationManagement'
 
 const schema = yup.object().shape({
   book_number: yup.string().nullable(),
@@ -18,14 +18,13 @@ const schema = yup.object().shape({
   mother_name: yup.string().nullable(),
   godfather_name: yup.string().nullable(),
   godmother_name: yup.string().nullable(),
-  celebrating_priest: yup.string().required("Campo obligatiorio"),
 });
 
-const BaptismForm = ({ baptismData, cleanState, onRefreshTableClicked, token }) => {
+const ConfirmationForm = ({ confirmationData, cleanState, onRefreshTableClicked, token }) => {
 
   const { register, handleSubmit, errors, formState, control, reset, watch } = useForm({
     mode: 'onBlur',
-    defaultValues: baptismData,
+    defaultValues: confirmationData,
     resolver: yupResolver(schema)
   })
   const {isSubmitting, touched} = formState;
@@ -40,12 +39,12 @@ const BaptismForm = ({ baptismData, cleanState, onRefreshTableClicked, token }) 
 
     if(isEmpty(data.id))
     {
-      response = await BaptismManagement.create(data, token);
+      response = await ConfirmationManagement.create(data, token);
       message = "El registro se ha guardado con exito.";
     }
     else
     {
-      response = await BaptismManagement.update(data, token);
+      response = await ConfirmationManagement.update(data, token);
       message = "El registro se ha actualizado con exito.";
     }
 
@@ -79,10 +78,10 @@ const BaptismForm = ({ baptismData, cleanState, onRefreshTableClicked, token }) 
   }
 
   useEffect(() => {
-    if(!isEmpty(baptismData.id))
+    if(!isEmpty(confirmationData.id))
     {
       reset(
-        {...baptismData}, 
+        {...confirmationData}, 
         {
           errors: false,
           dirtyFields: false,
@@ -95,7 +94,7 @@ const BaptismForm = ({ baptismData, cleanState, onRefreshTableClicked, token }) 
       );
     }
 
-  }, [baptismData, reset])
+  }, [confirmationData, reset])
 
   return (
     <Card>
@@ -194,8 +193,8 @@ const BaptismForm = ({ baptismData, cleanState, onRefreshTableClicked, token }) 
           </Form.Row>
 
           <Form.Row>
-            <Form.Group as={Col} controlId="date">
-              <Form.Label required>Fecha de bautismo</Form.Label>
+            <Form.Group as={Col} lg={6} controlId="date">
+              <Form.Label required>Fecha de confirmación</Form.Label>
               <Form.Control 
                 type="date" 
                 name="date"
@@ -209,18 +208,18 @@ const BaptismForm = ({ baptismData, cleanState, onRefreshTableClicked, token }) 
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group as={Col} controlId="celebrating_priest" className="mb-2">
-              <Form.Label required>Celebrante</Form.Label>
-              <Form.Control
-                type="text" 
-                name="celebrating_priest" 
-                isValid={touched.celebrating_priest && !errors.celebrating_priest}
-                isInvalid={!!errors.celebrating_priest}
+            <Form.Group as={Col} lg={6} controlId="birth_date">
+              <Form.Label required>Fecha de nacimiento</Form.Label>
+              <Form.Control 
+                type="date" 
+                name="birth_date"
+                isValid={touched.birth_date && !errors.birth_date}
+                isInvalid={!!errors.birth_date}
                 disabled={isSubmitting}
                 ref={register}
               />
               <Form.Control.Feedback type="invalid">
-                {errors.celebrating_priest && errors.celebrating_priest.message}
+                {errors.birth_date && errors.birth_date.message}
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -240,24 +239,6 @@ const BaptismForm = ({ baptismData, cleanState, onRefreshTableClicked, token }) 
               {errors.name && errors.name.message}
             </Form.Control.Feedback>
           </Form.Group>
-
-          <Form.Row>
-            <Form.Group as={Col} controlId="birth_date">
-              <Form.Label required>Fecha de nacimiento</Form.Label>
-              <Form.Control 
-                type="date" 
-                name="birth_date"
-                isValid={touched.birth_date && !errors.birth_date}
-                isInvalid={!!errors.birth_date}
-                disabled={isSubmitting}
-                ref={register}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.birth_date && errors.birth_date.message}
-              </Form.Control.Feedback>
-            </Form.Group>
-
-          </Form.Row>
 
           <Form.Row>
             <Form.Group as={Col} controlId="father_name" className="mb-2">
@@ -328,4 +309,4 @@ const BaptismForm = ({ baptismData, cleanState, onRefreshTableClicked, token }) 
   )
 }
 
-export default BaptismForm
+export default ConfirmationForm
