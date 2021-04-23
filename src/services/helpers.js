@@ -138,3 +138,20 @@ export const confirmDeleteFireToast = (confirmCallback, message, properties = {}
   })
 }
 
+export const fireDownloadPDF = (html = '', icon='info') => {
+  const MySwal = withReactContent(Swal)
+
+  MySwal.fire({
+    icon: icon,
+    title: '',
+    html: html,
+    width: "20rem",
+    showConfirmButton: false,
+    customClass:
+    {
+      title: 'font-size-small',
+      content: 'font-size-small-content',
+    },
+  })
+}
+

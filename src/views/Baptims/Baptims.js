@@ -1,11 +1,11 @@
-import { PDFDownloadLink, usePDF } from '@react-pdf/renderer'
 import React, { useRef, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import CustomTable from '../../components/CustomTable'
+import DownloadPDF from '../../components/DownloadPDF'
 import Header from '../../components/Header'
 import BaptismManagement from '../../services/BaptismManagement'
-import { confirmDeleteFireToast, defaultCellStyles, isEmpty, updateObject, fireMessage } from '../../services/helpers'
+import { confirmDeleteFireToast, defaultCellStyles, isEmpty, updateObject, fireDownloadPDF } from '../../services/helpers'
 import CustomPDF from '../PDF/CustomPDF'
 import BaptismForm from './BaptismForm'
 
@@ -93,7 +93,7 @@ const Baptims = () => {
   }
 
   const exportToPDF = () => {
-    fireMessage("Proximamente!!!")
+    fireDownloadPDF(<DownloadPDF fileName="hola2.pdf" Pdf={<CustomPDF />} />)
   }
 
   return (
@@ -125,22 +125,6 @@ const Baptims = () => {
             />
           </Col>
         </Row>
-        <PDFDownloadLink
-          document={<CustomPDF />}
-          fileName="movielist.pdf"
-          style={{
-            textDecoration: "none",
-            padding: "10px",
-            color: "#4a4a4a",
-            backgroundColor: "#f2f2f2",
-            border: "1px solid #4a4a4a"
-          }}
-        >
-          {({ blob, url, loading, error }) =>
-            loading ? "Loading document..." : "Download Pdf"
-          }
-        </PDFDownloadLink>
-
       </Container>
     </>
   )
