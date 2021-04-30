@@ -6,7 +6,7 @@ import DownloadPDF from '../../components/DownloadPDF'
 import Header from '../../components/Header'
 import BaptismManagement from '../../services/BaptismManagement'
 import { confirmDeleteFireToast, defaultCellStyles, isEmpty, updateObject, fireDownloadPDF } from '../../services/helpers'
-import CustomPDF from '../PDF/CustomPDF'
+import BaptismPDF from '../PDF/BaptismPDF'
 import BaptismForm from './BaptismForm'
 
 const initialSelectedBaptism = {
@@ -92,8 +92,8 @@ const Baptims = () => {
     tableRef.current && tableRef.current.onQueryChange({search: search})
   }
 
-  const exportToPDF = () => {
-    fireDownloadPDF(<DownloadPDF fileName="hola2.pdf" Pdf={<CustomPDF />} />)
+  const exportToPDF = (_, rowData) => {
+    fireDownloadPDF(<DownloadPDF fileName={"Fe de bautismo"} Pdf={<BaptismPDF rowData={rowData}/>} />)
   }
 
   return (

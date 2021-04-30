@@ -8,14 +8,11 @@ const DownloadPDF = ({fileName, Pdf}) => {
       fileName={fileName}
       style={{
         textDecoration: "none",
-        padding: "10px",
-        color: "#4a4a4a",
-        backgroundColor: "#f2f2f2",
-        border: "1px solid #4a4a4a",
+        padding: "10px"
       }}
     >
-      {({ blob, url, loading, error }) =>
-        loading ? "Cargando documento." : <a href={url} target="blank">Imprimir</a>
+      {({ url, loading, error }) =>
+        loading ? "Cargando documento." : <a href={url} target="blank">Imprimir {fileName} </a>
       }
     </PDFDownloadLink>
   );
