@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import CustomTable from '../../components/CustomTable'
 import DownloadPDF from '../../components/DownloadPDF'
 import Header from '../../components/Header'
+import ModalPrintPDF from '../../components/ModalPrintPDF'
 import BaptismManagement from '../../services/BaptismManagement'
 import { confirmDeleteFireToast, defaultCellStyles, isEmpty, updateObject, fireDownloadPDF } from '../../services/helpers'
 import BaptismPDF from '../PDF/BaptismPDF'
@@ -45,6 +46,7 @@ const columns = [
 
 const Baptims = () => {
   const [baptism, setBaptism] = useState(initialSelectedBaptism)
+  const [show, setShow] = useState(false)
   const token = useSelector(state => state.auth.token)
   const tableRef = useRef()
 
@@ -93,7 +95,8 @@ const Baptims = () => {
   }
 
   const exportToPDF = (_, rowData) => {
-    fireDownloadPDF(<DownloadPDF fileName={"Fe de bautismo"} Pdf={<BaptismPDF rowData={rowData}/>} />)
+    setShow(true)
+    // fireDownloadPDF(<DownloadPDF fileName={"Fe de bautismo"} Pdf={<BaptismPDF rowData={rowData}/>} />)
   }
 
   return (
@@ -125,6 +128,7 @@ const Baptims = () => {
             />
           </Col>
         </Row>
+        <ModalPrintPDF show={show} handleClose={() => setShow(false)} />
       </Container>
     </>
   )
