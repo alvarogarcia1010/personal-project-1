@@ -2,11 +2,10 @@ import React, { useRef, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import CustomTable from '../../components/CustomTable'
-import DownloadPDF from '../../components/DownloadPDF'
 import Header from '../../components/Header'
 import ModalPrintPDF from '../../components/ModalPrintPDF'
 import BaptismManagement from '../../services/BaptismManagement'
-import { confirmDeleteFireToast, defaultCellStyles, isEmpty, updateObject, fireDownloadPDF } from '../../services/helpers'
+import { confirmDeleteFireToast, defaultCellStyles, isEmpty, updateObject } from '../../services/helpers'
 import BaptismPDF from '../PDF/BaptismPDF'
 import BaptismForm from './BaptismForm'
 
@@ -47,6 +46,7 @@ const columns = [
 const Baptims = () => {
   const [baptism, setBaptism] = useState(initialSelectedBaptism)
   const [show, setShow] = useState(false)
+  const [pdfData, setPdfData] = useState({})
   const token = useSelector(state => state.auth.token)
   const tableRef = useRef()
 
@@ -96,7 +96,12 @@ const Baptims = () => {
 
   const exportToPDF = (_, rowData) => {
     setShow(true)
-    // fireDownloadPDF(<DownloadPDF fileName={"Fe de bautismo"} Pdf={<BaptismPDF rowData={rowData}/>} />)
+    setPdfData(rowData)
+  }
+
+  const onClosePDFModal = () => {
+    setPdfData({})
+    setShow(false)
   }
 
   return (
@@ -128,7 +133,12 @@ const Baptims = () => {
             />
           </Col>
         </Row>
-        <ModalPrintPDF show={show} handleClose={() => setShow(false)} />
+        <ModalPrintPDF
+          data={pdfData} 
+          show={show}
+          handleClose={onClosePDFModal}
+          PdfComponent={BaptismPDF}
+        />
       </Container>
     </>
   )

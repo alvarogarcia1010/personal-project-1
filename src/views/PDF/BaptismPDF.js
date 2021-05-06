@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const BaptismPDF = ({rowData}) => {
+const BaptismPDF = ({rowData, additionalData}) => {
   return (
     <Document>
       <Page size="LETTER" style={styles.page}>
@@ -107,11 +107,11 @@ const BaptismPDF = ({rowData}) => {
             <Text style={styles.bold}>{rowData.celebrating_priest}</Text>
           </View>
 
-          <Text>Y para efectos de ... firmo y sello la presente, en Tepecoyo el día ....</Text>
+          <Text>Y para efectos de {additionalData.reason} firmo y sello la presente, en Tepecoyo el día {additionalData.date}</Text>
         
           <View style={{marginVertical: '2.5cm'}}>
             <Text style={styles.centerAndBold}>F._________________________________________________</Text>
-            <Text style={{...styles.centerAndBold, marginVertical: 2}}>Pbro. Juan Ramón Servellón Ramon</Text>
+            <Text style={{...styles.centerAndBold, marginVertical: 2}}>{additionalData.priest}</Text>
             <Text style={styles.centerAndBold}>Párroco</Text>
           </View>
         

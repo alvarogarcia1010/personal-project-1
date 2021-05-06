@@ -12,7 +12,7 @@ const DownloadPDF = ({fileName, Pdf}) => {
       }}
     >
       {({ url, loading, error }) =>
-        loading ? "Cargando documento." : <a href={url} target="blank">Imprimir {fileName} </a>
+        loading ? "Cargando..." : <a href={url} target="blank">Imprimir </a>
       }
     </PDFDownloadLink>
   );
