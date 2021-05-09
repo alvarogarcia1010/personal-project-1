@@ -1,6 +1,21 @@
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
+const MONTHS = [
+  'enero',
+  'febrero',
+  'marzo',
+  'abril',
+  'mayo',
+  'junio',
+  'julio',
+  'agosto',
+  'septiembre',
+  'octubre',
+  'noviembre',
+  'diciembre'
+]
+
 export const defaultCellStyles = {
   padding: "5px 8px",
   fontSize: "14px",
@@ -21,6 +36,29 @@ export const isEmpty = str => {
 export const removeEmptyKey = obj => {
   Object.keys(obj).forEach(key => obj[key] == null && delete obj[key]);
 };
+
+export const formatShortDate = date => {
+  let d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear()
+
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+
+  return [year, month, day].join('-');
+}
+
+export const formatLongDate = date => {
+  const d = new Date(date)
+  d.setMinutes(d.getMinutes() + d.getTimezoneOffset())
+
+  const monthName = MONTHS[d.getMonth()]
+  let day = '' + d.getDate()
+  if (day.length < 2) day = '0' + day;
+
+  return `${day} de ${monthName} del año ${d.getFullYear()}`
+}
 
 export const onErrorHandler = (error) => {
 

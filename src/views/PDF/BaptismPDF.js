@@ -1,8 +1,9 @@
 import React from "react";
 import { Page, Text, View, Image, Document, StyleSheet, Font } from "@react-pdf/renderer";
-import logo from '../../assets/images/logo.jpg'
+import logo from '../../assets/images/logo.png'
 import RobotoRegular from '../../assets/fonts/Raleway-Regular.ttf'
 import RobotoBold from '../../assets/fonts/Raleway-Bold.ttf'
+import { formatLongDate } from "../../services/helpers";
 
 Font.register({
   family: 'Roboto',
@@ -84,12 +85,12 @@ const BaptismPDF = ({rowData, additionalData}) => {
 
           <View style={styles.row}>
             <Text>Fecha de bautismo: </Text>
-            <Text style={styles.bold}>{rowData.date_with_format}</Text>
+            <Text style={styles.bold}>{formatLongDate(rowData.date)}</Text>
           </View>
 
           <View style={styles.row}>
             <Text>Fecha de bautismo: </Text>
-            <Text style={styles.bold}>{rowData.birth_date_with_format}</Text>
+            <Text style={styles.bold}>{formatLongDate(rowData.birth_date)}</Text>
           </View>
 
           <View style={styles.row}>
@@ -107,7 +108,7 @@ const BaptismPDF = ({rowData, additionalData}) => {
             <Text style={styles.bold}>{rowData.celebrating_priest}</Text>
           </View>
 
-          <Text>Y para efectos de {additionalData.reason} firmo y sello la presente, en Tepecoyo el día {additionalData.date}</Text>
+          <Text>Y para efectos de {additionalData.reason} se extiende la presente, en la Parroquia de "San Esteban Protomártir" el día {formatLongDate(additionalData.date)}</Text>
         
           <View style={{marginVertical: '2.5cm'}}>
             <Text style={styles.centerAndBold}>F._________________________________________________</Text>

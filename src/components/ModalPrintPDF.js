@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import {Form, Modal, Button} from "react-bootstrap";
 import DownloadPDF from "../components/DownloadPDF";
+import { formatShortDate } from "../services/helpers";
 
 const INITIAL_STATE = {
-  date: "",
+  date: formatShortDate(new Date()),
   reason: "",
   priest: "Pbro. Juan Ramón Servellón"
 };
