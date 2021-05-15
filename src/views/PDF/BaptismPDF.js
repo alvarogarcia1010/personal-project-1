@@ -3,7 +3,7 @@ import { Page, Text, View, Image, Document, StyleSheet, Font } from "@react-pdf/
 import logo from '../../assets/images/logo.png'
 import RobotoRegular from '../../assets/fonts/Raleway-Regular.ttf'
 import RobotoBold from '../../assets/fonts/Raleway-Bold.ttf'
-import { formatLongDate } from "../../services/helpers";
+import { formatLongDate, empty } from "../../services/helpers";
 
 Font.register({
   family: 'Roboto',
@@ -17,10 +17,10 @@ Font.register({
 const styles = StyleSheet.create({
   page: {
     fontFamily: 'Roboto',
-    padding: "2.5cm",
+    padding: "1.5cm 2cm",
     textAlign: 'justify',
     fontSize: 11,
-    lineHeight: 1.5,
+    lineHeight: 1.9,
   },
   row: {
     flexDirection: 'row'
@@ -57,11 +57,25 @@ const styles = StyleSheet.create({
 });
 
 const BaptismPDF = ({rowData, additionalData}) => {
+
+  let parentsName = `${rowData.father_name || ''}${rowData.mother_name || ''}`
+  let godparentsName = `${rowData.godfather_name || ''}${rowData.godmother_name || ''}`
+
+  if(!empty(rowData.father_name) && !empty(rowData.mother_name))
+  {
+    parentsName = `${rowData.father_name} y ${rowData.mother_name}`
+  }
+
+  if(!empty(rowData.godfather_name) && !empty(rowData.godmother_name))
+  {
+    godparentsName = `${rowData.godfather_name} y ${rowData.godmother_name}`
+  }
+
   return (
     <Document>
       <Page size="LETTER" style={styles.page}>
 
-        <View style={{...styles.row, marginBottom:'0.5cm'}}>
+        <View style={{...styles.row, marginBottom:'0.4cm'}}>
           <View>
             <Image src={logo} style={styles.logo} />
           </View>
@@ -79,7 +93,7 @@ const BaptismPDF = ({rowData, additionalData}) => {
         <View style={styles.body}>
           <Text style={styles.marginBottom}>El Infraescrito Párroco de la Parroquia "San Esteban" del municipio de Tepecoyo.</Text>
           <Text style={styles.bold}>HACE CONSTAR QUE:</Text>
-          <Text style={styles.marginBottom}>En el libro de bautismos N°{rowData.book_number} Folio N°{rowData.folio_number} Acta N°{rowData.record_number}</Text>
+          <Text style={styles.marginBottom}>En el libro de bautismos N° {rowData.book_number}    Folio N° {rowData.folio_number}    Acta N° {rowData.record_number}</Text>
           <Text style={styles.center}>Se encuentra el acta de bautismo de:</Text>
           <Text style={styles.name}>{rowData.name}</Text>
 
@@ -89,18 +103,18 @@ const BaptismPDF = ({rowData, additionalData}) => {
           </View>
 
           <View style={styles.row}>
-            <Text>Fecha de bautismo: </Text>
+            <Text>Fecha de nacimiento: </Text>
             <Text style={styles.bold}>{formatLongDate(rowData.birth_date)}</Text>
           </View>
 
           <View style={styles.row}>
             <Text>Hijo/a de: </Text>
-            <Text style={styles.bold}>{rowData.father_name} y {rowData.mother_name}</Text>
+            <Text style={styles.bold}>{parentsName}</Text>
           </View>
 
           <View style={styles.row}>
             <Text>Padrinos: </Text>
-            <Text style={styles.bold}>{rowData.godfather_name} y {rowData.godmother_name}</Text>
+            <Text style={styles.bold}>{godparentsName}</Text>
           </View>
 
           <View style={{...styles.row, ...styles.marginBottom}}>
