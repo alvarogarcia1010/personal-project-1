@@ -127,7 +127,7 @@ const BaptismPDF = ({rowData, additionalData}) => {
           <View style={{marginVertical: '2.5cm'}}>
             <Text style={styles.centerAndBold}>F._________________________________________________</Text>
             <Text style={{...styles.centerAndBold, marginVertical: 2}}>{additionalData.priest}</Text>
-            <Text style={styles.centerAndBold}>Párroco</Text>
+            <Text style={styles.centerAndBold}>{additionalData.position}</Text>
           </View>
         
         </View>

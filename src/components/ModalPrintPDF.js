@@ -6,7 +6,8 @@ import { formatShortDate } from "../services/helpers";
 const INITIAL_STATE = {
   date: formatShortDate(new Date()),
   reason: "",
-  priest: "Pbro. Juan Ramón Servellón"
+  priest: "Pbro. Balmore Edgardo Rivera Guerra",
+  position: "Párroco"
 };
 
 const ModalPrintPDF = ({show, handleClose, PdfComponent, data}) => {
@@ -49,7 +50,7 @@ const ModalPrintPDF = ({show, handleClose, PdfComponent, data}) => {
           </Form.Control.Feedback> */}
         </Form.Group>
 
-        <Form.Group controlId="name" className="mb-2">
+        <Form.Group controlId="reason" className="mb-2">
           <Form.Label required>Motivo</Form.Label>
           <Form.Control
             as="textarea"
@@ -62,12 +63,24 @@ const ModalPrintPDF = ({show, handleClose, PdfComponent, data}) => {
           </Form.Control.Feedback> */}
         </Form.Group>
 
-        <Form.Group controlId="name" className="mb-2">
-          <Form.Label required>Párroco</Form.Label>
+        <Form.Group controlId="priest" className="mb-2">
+          <Form.Label required>Sacerdote</Form.Label>
           <Form.Control
             type="text"
             value={additionalData.priest}
             onChange={evt => updateAdditionalData({priest: evt.target.value})}
+          />
+          {/* <Form.Control.Feedback type="invalid">
+            {errors.name && errors.name.message}
+          </Form.Control.Feedback> */}
+        </Form.Group>
+
+        <Form.Group controlId="position" className="mb-2">
+          <Form.Label required>Cargo</Form.Label>
+          <Form.Control
+            type="text"
+            value={additionalData.position}
+            onChange={evt => updateAdditionalData({position: evt.target.value})}
           />
           {/* <Form.Control.Feedback type="invalid">
             {errors.name && errors.name.message}
