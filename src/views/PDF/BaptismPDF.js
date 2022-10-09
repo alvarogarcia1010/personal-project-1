@@ -1,6 +1,5 @@
 import React from "react";
 import { Page, Text, View, Image, Document, StyleSheet, Font } from "@react-pdf/renderer";
-import logo from '../../assets/images/logo.png'
 import RobotoRegular from '../../assets/fonts/Raleway-Regular.ttf'
 import RobotoBold from '../../assets/fonts/Raleway-Bold.ttf'
 import { formatLongDate, empty } from "../../services/helpers";
@@ -77,7 +76,8 @@ const BaptismPDF = ({rowData, additionalData}) => {
 
         <View style={{...styles.row, marginBottom:'0.4cm'}}>
           <View>
-            <Image src={logo} style={styles.logo} />
+            {/* <Image src="https://firebasestorage.googleapis.com/v0/b/superea-online.appspot.com/o/banners%2Fweb%2FOctubre%202022%2FMASCOTA30OFF_04OCT22.jpg?alt=media&token=3aa2785b-b3ab-4b1d-9dfd-fc87d992b190" style={styles.logo} /> */}
+            <Image  source={ {uri: "https://firebasestorage.googleapis.com/v0/b/superea-online.appspot.com/o/banners%2Fweb%2FOctubre%202022%2FMASCOTA30OFF_04OCT22.jpg?alt=media&token=3aa2785b-b3ab-4b1d-9dfd-fc87d992b190", method: 'GET', headers: {}, body: ''} } style={styles.logo} />
           </View>
 
           <View style={{marginLeft: -50, marginTop: 10}}>
