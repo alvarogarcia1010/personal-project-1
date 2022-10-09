@@ -5,7 +5,7 @@
   "dependencies": {
     "@hookform/resolvers": "^1.0.0",
     "@material-ui/core": "^4.11.0",
-    "@react-pdf/renderer": "^3.0.0",
+    "@react-pdf/renderer": "^1.6.8",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -28,9 +28,11 @@
     "web-vitals": "^0.2.4",
     "yup": "^0.29.3"
   },
+  "devDependencies": {
+    "react-error-overlay": "6.0.9"
+  },
   "resolutions": {
-    "@react-pdf/font": "2.2.1",
-    "@react-pdf/pdfkit": "2.1.0"
+    "react-error-overlay": "6.0.9"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,4 +1,5 @@
 import React from "react";
+import logo from '../../assets/images/logo.png'
 import { Page, Text, View, Image, Document, StyleSheet, Font } from "@react-pdf/renderer";
 import RobotoRegular from '../../assets/fonts/Raleway-Regular.ttf'
 import RobotoBold from '../../assets/fonts/Raleway-Bold.ttf'
@@ -16,7 +17,7 @@ Font.register({
 const styles = StyleSheet.create({
   page: {
     fontFamily: 'Roboto',
-    padding: "1.5cm 2cm",
+    padding: "2cm",
     textAlign: 'justify',
     fontSize: 11,
     lineHeight: 1.9,
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textTransform: 'uppercase',
     fontWeight: 'bold',
-    marginVertical: 20
+    marginBottom: '25px'
   },
 });
 
@@ -76,8 +77,7 @@ const BaptismPDF = ({rowData, additionalData}) => {
 
         <View style={{...styles.row, marginBottom:'0.4cm'}}>
           <View>
-            {/* <Image src="https://firebasestorage.googleapis.com/v0/b/superea-online.appspot.com/o/banners%2Fweb%2FOctubre%202022%2FMASCOTA30OFF_04OCT22.jpg?alt=media&token=3aa2785b-b3ab-4b1d-9dfd-fc87d992b190" style={styles.logo} /> */}
-            <Image  source={ {uri: "https://firebasestorage.googleapis.com/v0/b/superea-online.appspot.com/o/banners%2Fweb%2FOctubre%202022%2FMASCOTA30OFF_04OCT22.jpg?alt=media&token=3aa2785b-b3ab-4b1d-9dfd-fc87d992b190", method: 'GET', headers: {}, body: ''} } style={styles.logo} />
+            <Image src={logo} style={styles.logo} />
           </View>
 
           <View style={{marginLeft: -50, marginTop: 10}}>
@@ -124,7 +124,7 @@ const BaptismPDF = ({rowData, additionalData}) => {
 
           <Text>Y para efectos de {additionalData.reason} se extiende la presente, en la Parroquia de "San Esteban Protomártir" el día {formatLongDate(additionalData.date)}</Text>
         
-          <View style={{marginVertical: '2.5cm'}}>
+          <View style={{marginVertical: '60px'}}>
             <Text style={styles.centerAndBold}>F._________________________________________________</Text>
             <Text style={{...styles.centerAndBold, marginVertical: 2}}>{additionalData.priest}</Text>
             <Text style={styles.centerAndBold}>{additionalData.position}</Text>
